@@ -1,9 +1,11 @@
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { formulationTypes } from "@/data/technologies/alkoxylatedAlcohol";
-import agriculturalSurfactantsData from "@/data/technologies/agriculturalSurfactants";
+import { Navigation } from "@/components/navigation";
+import { getFormulationTypes, getProducts, getProductSeries } from "@/lib/backend.js";
 
-export default function AgriculturalSurfactantsPage() {
+export default async function AgriculturalSurfactantsPage() {
+  const formulationTypes = await getFormulationTypes()
+  const series = await getProductSeries()
+  const agriculturalSurfactantsData = await getProducts()
 
   return (
     <div className="min-h-screen bg-white">
@@ -46,7 +48,7 @@ export default function AgriculturalSurfactantsPage() {
 
               {/* Products Table */}
               <div className="mt-12">
-              
+
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border-2 border-[#CCCCCC]">
                     <thead className="border-2 border-[#CCCCCC]">
@@ -82,7 +84,7 @@ export default function AgriculturalSurfactantsPage() {
                       </tr>
                     </thead>
                     <tbody className="border-2 border-[#CCCCCC]">
-                      {agriculturalSurfactantsData.products.map(
+                      {agriculturalSurfactantsData.map(
                         (product: any, index: number) => (
                           <tr
                             key={index}
@@ -102,7 +104,7 @@ export default function AgriculturalSurfactantsPage() {
                                 key={type}
                                 className="border-2 border-[#CCCCCC] px-2 py-3 text-center text-sm"
                               >
-                                {product.formulations[type] ? (
+                                {product.formulations.includes(type) ? (
                                   <span className="text-black font-bold text-lg">
                                     x
                                   </span>
