@@ -56,7 +56,7 @@ export function NewsCard({ article }: NewsCardProps) {
           {article.excerpt}
         </p>
         <div className="flex justify-center items-center h-full">
-          <Link href={`/news/${article.slug}`}>
+          <Link href={`/news/${article.id}`}>
             <Button className="bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red h-12 rounded-none font-bold text-2xl">
               Learn More
             </Button>

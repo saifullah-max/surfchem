@@ -12,9 +12,10 @@ interface ProductPageProps {
 
 export default async function FormulationGuideDetail({ params }: ProductPageProps) {
   const { id } = await params;
-  const product = await getFormulation(id)
+  if (!id) return notFound();
 
-  if (!id || !product || product == null) {
+  const product = await getFormulation(id)
+  if (!product || product == null) {
     return notFound();
   }
 

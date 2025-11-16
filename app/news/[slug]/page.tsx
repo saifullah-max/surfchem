@@ -1,24 +1,25 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Navigation } from "@/components/navigation";
-import { ChevronLeft } from "lucide-react";
-import { newsData } from "@/data/news";
 import { Footer } from "@/components/footer";
-import { useParams } from "next/navigation";
+import { Navigation } from "@/components/navigation";
+import { getSingleNews } from "@/lib/backend";
+import { NewsArticle } from "@/types/news";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
-export default function NewsDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
+interface NewsPageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
 
-  const article = newsData.find((a) => a.slug === slug);
+export default async function NewsDetailPage({ params }: NewsPageProps) {
+  const { slug: id } = await params;
+  if (!id) return notFound();
 
-  if (!article) {
-    notFound();
+  const article = await getSingleNews(id) as NewsArticle
+  if (!article || article == null) {
+    return notFound();
   }
 
   // Format the date
@@ -151,8 +152,8 @@ export default function NewsDetailPage() {
 
 
 
-              
-               
+
+
             </div>
             {/* Image section */}
             <div

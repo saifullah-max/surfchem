@@ -2,14 +2,12 @@ import { db } from '@/lib/firebase';
 import {
     collection,
     doc,
-    DocumentData,
     getDoc,
     getDocs,
     query as makeQuery,
     QueryConstraint
 } from 'firebase/firestore';
 
-type FireDocData = DocumentData & { id: string };
 
 export async function readCollection(path: string, constraints?: QueryConstraint[]) {
     const ref = collection(db, path);
@@ -19,7 +17,7 @@ export async function readCollection(path: string, constraints?: QueryConstraint
         return {
             id: doc.id,
             ...doc.data(),
-        } as FireDocData;
+        };
     });
 }
 
@@ -29,5 +27,5 @@ export async function readDocument(id: string, col: string) {
     return {
         id: snap.id,
         ...snap.data(),
-    } as FireDocData;
+    };
 }
