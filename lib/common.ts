@@ -7,16 +7,11 @@ import {
     QueryConstraint
 } from 'firebase/firestore';
 
-type Options = {
-    path: string;
-    constraints?: QueryConstraint[];
-};
-
 type FireDocData = DocumentData & { id: string };
 
-export async function getCollection({ path, constraints = [] }: Options) {
+export async function readCollection(path: string, constraints?: QueryConstraint[]) {
     const colRef = collection(db, path);
-    const query = constraints.length ? makeQuery(colRef, ...constraints) : colRef;
+    const query = constraints?.length ? makeQuery(colRef, ...constraints) : colRef;
     const snap = await getDocs(query);
     return snap.docs.map(doc => {
         return {
