@@ -1,11 +1,9 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { NewsCard } from "@/components/news-card";
-import { getNews } from "@/lib/backend";
+import { newsData } from "@/data/news_updated";
 
 export default async function NewsPage() {
-  const newsData = await getNews()
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
