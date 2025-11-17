@@ -2,6 +2,7 @@ import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { SignInForm } from "@/components/sign-in-form";
 import { getFormulation } from "@/lib/backend";
+import { Button, Link } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 
 interface FormulationPageProps {
@@ -33,13 +34,21 @@ export default async function FormulationGuideDetail({ params }: FormulationPage
             <div className="space-y-6">
               <div className="prose prose-gray max-w-none">
                 <p className="text-black text-lg sm:text-xl leading-relaxed">
-                  {product.fullDescription}
+                  {product.detailedDescription}
                 </p>
               </div>
             </div>
 
             {/* Sign In Form */}
-            <div className="flex justify-center lg:justify-end">
+            <div className="flex flex-col w-full max-w-full items-center">
+              <Button
+                type="submit"
+                className="px-10 mb-20 bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red rounded-none font-bold text-4xl"
+              >
+                <Link href={`/formulation-guides/${id}/pdf`}>
+                  DOWNLOAD PDF
+                </Link>
+              </Button>
               <SignInForm />
             </div>
           </div>
