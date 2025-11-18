@@ -36,7 +36,7 @@ export default async function CompanyHistoryPage() {
           {/* Image Section */}
           <div className="hidden sm:block pt-[70px]">
             <Image
-              src="/assets/SCC-Logo.png"
+              src={data.image || '/assets/SCC-Logo.png'}
               alt="Resource 3"
               width={500}
               height={500}

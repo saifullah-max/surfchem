@@ -32,7 +32,7 @@ export default async function GeneralWhitePapersPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-6">
                 {whitePapers.map((whitePaper) => (
                   <div className="px-4" key={whitePaper.id}>
-                    <WhitePaperaCard whitePaper={whitePaper} />
+                    <WhitePaperCard whitePaper={whitePaper} />
                   </div>
                 ))}
               </div>
