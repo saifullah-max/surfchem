@@ -7,12 +7,17 @@ import { Label } from "@/components/ui/label";
 import { readDocument } from "@/lib/common";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 export function LoginCard() {
   const [remember, setRemember] = useState(false);
+  const [isAuth, setAuth] = useState<boolean>(false);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(u => setAuth(u != null))
+    return () => unsubscribe();
+  }, []);
+
 
   const handleSubmit = async (data: FormData) => {
     try {
@@ -24,17 +29,15 @@ export function LoginCard() {
       if (!userDoc.is_approved) {
         signOut(auth)
         alert('Use is not approved for sign-in')
-        return
       }
     } catch (error) {
       console.error(error)
       alert(error)
     }
-    redirect('/');
   };
 
   return (
-    <>{auth.currentUser == null &&
+    <>{!isAuth &&
       <Card className="rounded-2xl bg-card p-8 shadow-xl md:p-10">
         <div className="space-y-6">
           <p className="text-pretty text-[27px] md:text-[32px] leading-[38px] font-bold tracking-tight">

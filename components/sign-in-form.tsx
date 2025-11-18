@@ -6,13 +6,18 @@ import { Input } from "@/components/ui/input";
 import { readDocument } from "@/lib/common";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { redirect } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 export function SignInForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [isAuth, setAuth] = useState<boolean>(false);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(u => setAuth(u != null))
+    return () => unsubscribe();
+  }, []);
+
 
 
   const handleSubmit = async (e: FormEvent) => {
@@ -23,18 +28,16 @@ export function SignInForm() {
       if (!userDoc.is_approved) {
         signOut(auth)
         alert('Use is not approved for sign-in')
-        return
       }
     } catch (error) {
       console.error(error)
       alert(error)
     }
-    redirect('/');
   };
 
 
   return (
-    <>{auth.currentUser == null &&
+    <>{!isAuth &&
       <div className="bg-white p-8 rounded-3xl shadow-sm border max-w-md w-full">
         <h2 className="text-5xl sm:text-6xl text-center font-bold text-black2 mb-2">Sign In</h2>
         <p className="text-black text-2xl mb-8 text-center">Sign in to view this content</p>

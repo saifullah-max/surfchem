@@ -13,8 +13,7 @@ import { signOut } from "firebase/auth";
 import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContactModal } from "./contact-modal";
 
 export function Navigation() {
@@ -38,6 +37,14 @@ export function Navigation() {
     setIsResourcesDropdownOpen(false);
     setIsRegionalContactsDropdownOpen(false);
   };
+
+
+  const [isAuth, setAuth] = useState<boolean>(false);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(u => setAuth(u != null))
+    return () => unsubscribe();
+  }, []);
+
 
   return (
     <header className="bg-white shadow-sm relative">
@@ -104,17 +111,14 @@ export function Navigation() {
             >
               Careers
             </Link>
-            {auth.currentUser == null ? <Link
+            {!isAuth ? <Link
               href="/auth-form"
               className="text-white font-semibold transition-colors duration-200"
             >
               Sign In
             </Link> :
               <Button
-                onClick={() => {
-                  signOut(auth)
-                  redirect('/')
-                }}
+                onClick={() => signOut(auth)}
                 className="text-white font-semibold transition-colors duration-200"
               >Sign Out</Button>
             }

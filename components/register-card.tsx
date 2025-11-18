@@ -7,10 +7,16 @@ import { createDocument } from "@/lib/common";
 import { auth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { serverTimestamp } from "firebase/firestore";
-import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 export function RegisterCard() {
+
+  const [isAuth, setAuth] = useState<boolean>(false);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(u => setAuth(u != null))
+    return () => unsubscribe();
+  }, []);
 
   const handleSubmit = async (data: FormData) => {
     if (data.get("check") != "SURFCHEM") {
@@ -40,7 +46,6 @@ export function RegisterCard() {
       }, creds.user.uid);
 
       await signOut(auth);
-      redirect('/');
     } catch (error) {
       console.error(error)
       alert(error)
@@ -48,7 +53,7 @@ export function RegisterCard() {
   };
 
   return (
-    <>{auth.currentUser == null &&
+    <>{!isAuth == null &&
       <Card className="rounded-2xl bg-card p-8 shadow-xl md:p-10">
         <div className="space-y-6">
           <div className="space-y-1">
