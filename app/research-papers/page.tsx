@@ -1,9 +1,13 @@
 "use client";
 
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { TechnicalBriefCard } from "@/components/technical-brief-card";
+import { getResearchPapers } from "@/lib/backend";
 
-export default function ResearchPapersPage() {
+export default async function ResearchPapersPage() {
+  const researchPapers = await getResearchPapers()
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -16,7 +20,15 @@ export default function ResearchPapersPage() {
           </h2>
         </div>
       </section>
-
+      <div className="container px-4 sm:px-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {researchPapers.map((paper) => (
+            <div className="px-4" key={paper.id}>
+              <TechnicalBriefCard brief={paper} />
+            </div>
+          ))}
+        </div>
+      </div>
       {/* Footer Section */}
       <Footer />
     </div>

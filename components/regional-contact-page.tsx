@@ -208,7 +208,7 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
                   </a>
                 </li>
                 <li>
-                  <a href="/research-papers" className="hover:text-green-400">
+                  <a href="/white-papers" className="hover:text-green-400">
                     White Papers
                   </a>
                 </li>
