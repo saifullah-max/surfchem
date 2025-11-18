@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, use } from "react";
-import { notFound } from "next/navigation";
-import { jobPositions } from "@/data/careers";
-import RoleOverview from "@/components/role-overview";
+export const dynamic = 'force-dynamic';
+
+import { Footer } from "@/components/footer";
 import ApplicationForm from "@/components/job-application-form";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
+import RoleOverview from "@/components/role-overview";
+import { jobPositions } from "@/data/careers";
+import { notFound } from "next/navigation";
+import { use, useState } from "react";
 
 interface JobDetailsPageProps {
   params: Promise<{
@@ -47,21 +49,19 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
           <div className="flex space-x-8">
             <button
               onClick={() => setActiveTab("overview")}
-              className={`pb-2 px-1 border-b-2 text-[26px] uppercase tracking-wide transition-colors duration-200 ${
-                activeTab === "overview"
+              className={`pb-2 px-1 border-b-2 text-[26px] uppercase tracking-wide transition-colors duration-200 ${activeTab === "overview"
                   ? "border-red text-red font-bold "
                   : "border-transparent text-gray-500 hover:text-gray-500"
-              }`}
+                }`}
             >
               ROLE OVERVIEW
             </button>
             <button
               onClick={() => setActiveTab("application")}
-              className={`pb-2 px-1 border-b-2 text-[26px] uppercase tracking-wide transition-colors duration-200 ${
-                activeTab === "application"
+              className={`pb-2 px-1 border-b-2 text-[26px] uppercase tracking-wide transition-colors duration-200 ${activeTab === "application"
                   ? "border-red text-red font-bold "
                   : "border-transparent text-gray-500 hover:text-gray-500"
-              }`}
+                }`}
             >
               APPLICATION
             </button>

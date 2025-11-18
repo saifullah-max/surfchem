@@ -139,9 +139,8 @@ export default function FormulationGuidesPage() {
 
             {/* Sidebar Filters */}
             <div
-              className={`lg:w-72 ${
-                isMobileFilterOpen ? "block" : "hidden lg:block"
-              }`}
+              className={`lg:w-72 ${isMobileFilterOpen ? "block" : "hidden lg:block"
+                }`}
             >
               <FormulationFilters onFilterChange={handleFilterChange} />
             </div>
@@ -167,11 +166,10 @@ export default function FormulationGuidesPage() {
                       <button
                         key={page}
                         onClick={() => setCurrentPage(page)}
-                        className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium transition-colors ${
-                          currentPage === page
+                        className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium transition-colors ${currentPage === page
                             ? "bg-blue-600 text-white"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                          }`}
                       >
                         {page}
                       </button>

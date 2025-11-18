@@ -1,9 +1,11 @@
 "use client";
 
-import { Navigation } from "@/components/navigation";
-import JobCard from "@/components/job-card";
-import { jobPositions } from "@/data/careers";
+export const dynamic = 'force-dynamic';
+
 import { Footer } from "@/components/footer";
+import JobCard from "@/components/job-card";
+import { Navigation } from "@/components/navigation";
+import { jobPositions } from "@/data/careers";
 
 export default function CareersPage() {
   return (

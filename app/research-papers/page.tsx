@@ -1,4 +1,4 @@
-"use client";
+export const dynamic = 'force-dynamic';
 
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { DirectorCard } from "@/components/director-card";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";

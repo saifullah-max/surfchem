@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { DirectorDetail } from "@/components/director-detail";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";

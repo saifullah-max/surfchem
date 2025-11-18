@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { getSingleNews } from "@/lib/backend";
@@ -106,8 +108,8 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
                   {article.content}
                 </ReactMarkdown>
               </div> */}
-            {/* ✅ Wrap everything in the prose container */}
-<div className="prose max-w-none text-black2 text-[22px]
+              {/* ✅ Wrap everything in the prose container */}
+              <div className="prose max-w-none text-black2 text-[22px]
   prose-headings:font-bold prose-headings:text-black2
   prose-h1:text-[44px] prose-h2:text-[22px] prose-p:text-[22px]
   prose-h1:mb-0 prose-h2:mb-0 prose-h2:mt-0 prose-p:mb-4
@@ -115,40 +117,40 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
   prose-img:shadow-lg prose-h3:text-[32px] prose-h3:font-normal
 ">
 
-  <ReactMarkdown
-    rehypePlugins={[rehypeRaw]}
-    components={{
-      div: ({ node, className, children, ...props }) => {
-        // Apply grid layout only for the special 3-image div
-        if (className?.includes("grid grid-cols-1 md:grid-cols-3")) {
-          return (
-            <div
-              {...props}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 mr-4 mb-8"
-            >
-              {children}
-            </div>
-          );
-        }
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw]}
+                  components={{
+                    div: ({ node, className, children, ...props }) => {
+                      // Apply grid layout only for the special 3-image div
+                      if (className?.includes("grid grid-cols-1 md:grid-cols-3")) {
+                        return (
+                          <div
+                            {...props}
+                            className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 mr-4 mb-8"
+                          >
+                            {children}
+                          </div>
+                        );
+                      }
 
-        // Otherwise, use normal prose styles for other divs
-        return (
-          <div {...props} className={className}>
-            {children}
-          </div>
-        );
-      },
-      img: ({ node, className, ...props }) => (
-        <img
-          {...props}
-          className={`${className || ""} w-full h-full object-cover rounded-lg`}
-        />
-      ),
-    }}
-  >
-    {article.content}
-  </ReactMarkdown>
-</div>
+                      // Otherwise, use normal prose styles for other divs
+                      return (
+                        <div {...props} className={className}>
+                          {children}
+                        </div>
+                      );
+                    },
+                    img: ({ node, className, ...props }) => (
+                      <img
+                        {...props}
+                        className={`${className || ""} w-full h-full object-cover rounded-lg`}
+                      />
+                    ),
+                  }}
+                >
+                  {article.content}
+                </ReactMarkdown>
+              </div>
 
 
 
