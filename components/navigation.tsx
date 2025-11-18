@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import {
   Sheet,
   SheetContent,
-  SheetTrigger,
   SheetHeader,
   SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
+import { auth } from "@/lib/firebase";
+import { Button } from "@radix-ui/themes";
+import { signOut } from "firebase/auth";
 import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useState } from "react";
 import { ContactModal } from "./contact-modal";
 
 export function Navigation() {
@@ -100,12 +104,20 @@ export function Navigation() {
             >
               Careers
             </Link>
-            <Link
+            {auth.currentUser == null ? <Link
               href="/auth-form"
               className="text-white font-semibold transition-colors duration-200"
             >
-              SignIn
-            </Link>
+              Sign In
+            </Link> :
+              <Button
+                onClick={() => {
+                  signOut(auth)
+                  redirect('/')
+                }}
+                className="text-white font-semibold transition-colors duration-200"
+              >Sign Out</Button>
+            }
             <div
               className="relative"
               onMouseEnter={() => setIsRegionalDropdownOpen(true)}
@@ -360,9 +372,8 @@ export function Navigation() {
                     >
                       About Us
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
-                          isAboutDropdownOpen ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform ${isAboutDropdownOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
@@ -395,9 +406,8 @@ export function Navigation() {
                     >
                       Products
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
-                          isProductsDropdownOpen ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform ${isProductsDropdownOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
@@ -414,9 +424,8 @@ export function Navigation() {
                           >
                             AgroChemical
                             <ChevronDown
-                              className={`w-4 h-4 transition-transform ${
-                                isAgroChemicalDropdownOpen ? "rotate-180" : ""
-                              }`}
+                              className={`w-4 h-4 transition-transform ${isAgroChemicalDropdownOpen ? "rotate-180" : ""
+                                }`}
                             />
                           </button>
 
@@ -503,9 +512,8 @@ export function Navigation() {
                     >
                       Resources
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
-                          isResourcesDropdownOpen ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform ${isResourcesDropdownOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
@@ -569,9 +577,8 @@ export function Navigation() {
                     >
                       Regional Contacts
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
-                          isRegionalContactsDropdownOpen ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform ${isRegionalContactsDropdownOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 

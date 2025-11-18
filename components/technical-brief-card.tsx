@@ -2,8 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { auth } from "@/lib/firebase";
 import type { TechnicalBrief } from "@/types/technical-brief";
-import Link from "next/link";
+import DownloadButton from "./download-button";
 
 interface TechnicalBriefCardProps {
   brief: TechnicalBrief;
@@ -20,23 +21,11 @@ export function TechnicalBriefCard({ brief }: TechnicalBriefCardProps) {
           {brief.description}
         </p>
         {brief.downloadUrl && <div className="flex flex-col w-full max-w-full items-center">
-          <Button
-            onClick={() => {
-              // In a real app, this would handle authentication and download
-              alert("Please sign in to download this technical brief");
-            }}
+          {auth.currentUser == null && <Button
+            onClick={() => alert("Please sign in to download this technical brief")}
             className="bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red h-12 rounded-none font-bold text-2xl"
-          >
-            Sign In To Download
-          </Button>
-          <Button
-            type="submit"
-            className="px-10 mb-20 bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red rounded-none font-bold text-2xl"
-          >
-            <Link href={brief.downloadUrl} target="_blank" rel="noopener noreferrer">
-              DOWNLOAD PDF
-            </Link>
-          </Button>
+          >Sign In To Download</Button>}
+          <DownloadButton href={brief.downloadUrl} />
         </div>}
       </CardContent>
     </Card>

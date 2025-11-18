@@ -1,11 +1,10 @@
 export const dynamic = 'force-dynamic';
 
+import DownloadButton from "@/components/download-button";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { SignInForm } from "@/components/sign-in-form";
-import { Button } from "@/components/ui/button";
 import { getWhitePaper } from "@/lib/backend";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface WhitePaperDetailPageProps {
@@ -40,18 +39,12 @@ export default async function WhitePaperDetailPage({
               </p>
             </div>
 
-            {/* Right side - Sign In Form */}
-            <div className="flex flex-col w-full max-w-full items-end">
-              {whitePaper.pdf && <Button
-                type="submit"
-                className="px-10 mb-20 bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red rounded-none font-bold text-4xl"
-              >
-                <Link href={whitePaper.pdf} target="_blank" rel="noopener noreferrer">
-                  DOWNLOAD PDF
-                </Link>
-              </Button>}
-              <SignInForm />
-            </div>
+            {whitePaper.pdf &&
+              <div className="flex flex-col w-full max-w-full items-end">
+                <DownloadButton href={whitePaper.pdf} />
+                <SignInForm />
+              </div>
+            }
           </div>
         </div>
       </div>
