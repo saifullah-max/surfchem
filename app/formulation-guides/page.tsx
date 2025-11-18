@@ -48,7 +48,7 @@ export default function FormulationGuidesPage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch('/api/formulations');
+        const res = await fetch('/formulation-guides/data');
         const data = await res.json()
         setFormulations(data);
       } catch (e: any) {
@@ -167,8 +167,8 @@ export default function FormulationGuidesPage() {
                         key={page}
                         onClick={() => setCurrentPage(page)}
                         className={`w-8 h-8 rounded flex items-center justify-center text-sm font-medium transition-colors ${currentPage === page
-                            ? "bg-blue-600 text-white"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          ? "bg-blue-600 text-white"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                           }`}
                       >
                         {page}
