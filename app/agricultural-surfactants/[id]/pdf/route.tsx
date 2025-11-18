@@ -1,5 +1,5 @@
 import { Product } from '@/data/technologies/agriculturalSurfactants';
-import { getProduct } from '@/lib/backend';
+import { getFormulationTypes, getProduct } from '@/lib/backend';
 import { renderToStream } from '@react-pdf/renderer';
 import { NextRequest, NextResponse } from 'next/server';
 import ProductPDF from './ProductPDF';
@@ -11,6 +11,7 @@ export async function GET(
     { params }: { params: { id: string } },
 ) {
     const { id } = await params
+    await getFormulationTypes()
     const product = await getProduct(id) as Product;
     const stream = await renderToStream(
         <ProductPDF product={product} />,

@@ -28,6 +28,35 @@ export default function ProductPDF({ product }: { product: Product }) {
                 </View>
 
                 <View style={styles.section}>
+                    <div style={styles.sectionDivider} />
+                    <View style={styles.infoRow}>
+                        <Text style={styles.valueBold}>Surfactant Series</Text>
+                        <Text style={[styles.valueBold, { flex: 2 }]}>Surfactant Name</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>{product.series}</Text>
+                        <Text style={[styles.value, { flex: 2 }]}>{product.name}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.valueBold}>Chemical Category</Text>
+                        <Text style={[styles.valueBold, { flex: 2 }]}>Chemical Name</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>{product.chemical_category}</Text>
+                        <Text style={[styles.value, { flex: 2 }]}>{product.chemical_name}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.valueBold}>CAS Number</Text>
+                        <Text style={[styles.valueBold, { flex: 2 }]}>Alternate Name</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>{product.case_no}</Text>
+                        <Text style={[styles.value, { flex: 2 }]}>{product.alternate_name}</Text>
+                    </View>
+                    <div style={styles.sectionDivider} />
+                </View>
+
+                <View style={styles.section}>
                     <Text style={styles.sectionTitle}>1. Introduction</Text>
                     <Text style={styles.bodyText}>{product.introduction_md}</Text>
                 </View>
@@ -35,6 +64,20 @@ export default function ProductPDF({ product }: { product: Product }) {
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>2. Application & Use</Text>
                     <Text style={styles.bodyText}>{product.application_md}</Text>
+                    <div style={styles.sectionDivider} />
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>Ionicity:</Text>
+                        <Text style={[styles.value, { flex: 2 }]}>Function:</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>{product.ionicity}</Text>
+                        <Text style={[styles.value, { flex: 2 }]}>{product.function}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>Applicable Formulation Types:</Text>
+                        <Text style={[styles.value, { flex: 2 }]}>{product.formulation_types.join(' | ')}</Text>
+                    </View>
+                    <div style={styles.sectionDivider} />
                 </View>
 
                 <View style={styles.section}>
@@ -57,6 +100,45 @@ export default function ProductPDF({ product }: { product: Product }) {
                                 <Text style={[styles.tableCell, { flex: 1 }]}>{row.result}</Text>
                             </View>
                         ))}
+                    </View>
+                </View>
+
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>4. Futher Information</Text>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>Typical Usage</Text>
+                        <Text style={styles.value}>%</Text>
+                        <Text style={styles.value}>{product.usage}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>Pack size</Text>
+                        <Text style={styles.value}>Kgs</Text>
+                        <Text style={styles.value}>{product.pack_size}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>Container Type</Text>
+                        <Text style={styles.value}>Material</Text>
+                        <Text style={styles.value}>{product.container_type}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>Shelf life</Text>
+                        <Text style={styles.value}>Days</Text>
+                        <Text style={styles.value}>{product.shelf_life}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>DOT Classification</Text>
+                        <Text style={styles.value}></Text>
+                        <Text style={styles.value}>{product.dot_class}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>Biodegradability</Text>
+                        <Text style={styles.value}></Text>
+                        <Text style={styles.value}>{product.biodegradability}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.value}>EPA 40 CFR Listing</Text>
+                        <Text style={styles.value}>Status</Text>
+                        <Text style={styles.value}>{product.cfr_listing}</Text>
                     </View>
                 </View>
 
@@ -150,12 +232,12 @@ const styles = StyleSheet.create({
         minHeight: 16,
     },
     tableHeaderRow: {
-        backgroundColor: '#3B8E22',
+        backgroundColor: '#5DE2E7',
     },
     tableHeaderCell: {
         fontSize: 9,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         paddingVertical: 4,
         paddingHorizontal: 6,
         borderRightWidth: 0.5,
@@ -176,5 +258,27 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#000000', // black line
-    }
+    },
+    sectionDivider: {
+        marginBottom: 6,
+        marginTop: 6,
+        borderBottomWidth: 0.5,
+        borderBottomColor: '#000000', // black line
+    },
+    infoRow: {
+        flexDirection: "row",
+    },
+    value: {
+        flex: 1,
+        fontSize: 9,
+        lineHeight: 1.4,
+        color: '#333333',
+    },
+    valueBold: {
+        flex: 1,
+        fontSize: 11,
+        lineHeight: 1.4,
+        color: 'black',
+        fontWeight: 'bold'
+    },
 });

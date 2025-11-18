@@ -12,7 +12,7 @@ export interface Product {
   created_at: string,
   disclaimer_md: string,
   dot_class: string,
-  formulation_types: string,
+  formulation_types: string[],
   function: string,
   in_stock: string,
   introduction_md: string,
