@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { ReactNode, useState } from "react";
 
 export function ContactModal({
@@ -20,6 +20,25 @@ export function ContactModal({
   children?: ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = (data: FormData) => {
+    if (data.get("check") != "SURFCHEM") {
+      alert("Enter SURFCHEM for security")
+      return
+    }
+
+    fetch('/forms', {
+      method: 'POST',
+      body: JSON.stringify({
+        type: 'LetsTalk',
+        first_name: data.get("first_name"),
+        last_name: data.get("last_name"),
+        email: data.get("email"),
+        description: data.get("description"),
+      })
+    });
+
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -51,29 +70,37 @@ export function ContactModal({
 
           {/* Right Side Form */}
           <div className="bg-white p-10 overflow-y-auto">
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(new FormData(e.currentTarget))
+            }}>
               <input
                 type="text"
+                name='first_name'
                 placeholder="First Name"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
               />
               <input
                 type="text"
+                name='last_name'
                 placeholder="Last Name"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
               />
               <input
                 type="email"
+                name='email'
                 placeholder="Email"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
               />
               <textarea
                 rows={4}
+                name='description'
                 placeholder="How can Surfactant Chemicals Company help you today?"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
               />
               <input
                 type="text"
+                name='check'
                 placeholder="For security, type SURFCHEM"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
               />

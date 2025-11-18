@@ -1,7 +1,9 @@
 import { db } from '@/lib/firebase';
 import {
+    addDoc,
     collection,
     doc,
+    DocumentData,
     getDoc,
     getDocs,
     query as makeQuery,
@@ -28,4 +30,10 @@ export async function readDocument(id: string, col: string) {
         id: snap.id,
         ...snap.data(),
     };
+}
+
+
+export async function createDocument(col: string, data: DocumentData) {
+    const ref = await addDoc(collection(db, col), data)
+    console.log(`new doc ${ref.id}`)
 }
