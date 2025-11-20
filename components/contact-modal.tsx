@@ -41,7 +41,7 @@ export function ContactModal({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          className={`bg-greenCustom hover:bg-white text-white hover:text-greenCustom border-4 border-greenCustom ${triggerClassName} rounded-xl font-bold`}
+          className={`bg-greenCustom hover:bg-white text-white hover:text-greenCustom border-2 text-[16px] md:py-3 md:px-4 hover:border-1 border-greenCustom ${triggerClassName} rounded-xl font-bold`}
         >
           {triggerText}
         </Button>

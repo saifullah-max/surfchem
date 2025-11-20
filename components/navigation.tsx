@@ -159,8 +159,8 @@ export function Navigation() {
       </div>
 
       {/* Below */}
-      <div className="container px-1 py-8 flex items-center justify-between max-w-[1600px] mx-auto">
-        <div className="flex items-center justify-between w-full">
+      <div className="container px-1 py-8 max-w-[1600px] mx-auto">
+        <div className="flex items-center w-full md:px-16 md:right-0">
           <Link href="/" className="flex items-center space-x-6">
             <Image
               src="/assets/logo.png"
@@ -172,7 +172,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center justify-center space-x-2 md:space-x-1 lg:space-x-4 text-[15px] ml-12">
+          <nav className="hidden lg:flex items-center justify-between space-x-2 md:space-x-6 lg:space-x-10 text-[16px] ml-32">
             <Link
               href="/"
               className="text-black2 font-bold hover:text-greenCustom"
@@ -192,16 +192,16 @@ export function Navigation() {
               </Link>
 
               {isAboutDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 text-sm text-white bg-greenCustom shadow-lg z-50">
+                <div className="absolute top-full left-0 mt-1 w-32 text-sm text-white bg-greenCustom shadow-lg z-50">
                   <Link
                     href="/company-history"
-                    className="block px-4 py-2 font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
                   >
                     Company History
                   </Link>
                   <Link
                     href="/board-of-directors"
-                    className="block px-4 py-2 font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 font-bold hover:bg-greenCustomHover"
                   >
                     Board of Directors
                   </Link>
@@ -222,14 +222,14 @@ export function Navigation() {
               </Link>
 
               {isProductsDropdownOpen && (
-                <div className="absolute top-full left-0 w-56 bg-greenCustom text-white shadow-lg z-50">
+                <div className="absolute top-full left-0 w-32 bg-greenCustom text-white shadow-lg z-50">
                   <div
                     className="relative"
                     onMouseEnter={() => setIsAgroChemicalDropdownOpen(true)}
                     onMouseLeave={() => setIsAgroChemicalDropdownOpen(false)}
                   >
                     <Link href='/agrochemicals'>
-                      <div className="block px-4 py-2 text-sm font-bold hover:bg-greenCustomHover cursor-pointer">
+                      <div className="block px-1 py-1 text-sm font-bold hover:bg-greenCustomHover cursor-pointer">
                         Agrochemical
                       </div>
                     </Link>
@@ -238,25 +238,25 @@ export function Navigation() {
                       <div className="absolute top-0 left-full w-64 bg-greenCustomHover text-white shadow-lg z-50">
                         <Link
                           href="/agricultural-surfactants"
-                          className="block px-4 py-2 text-sm font-bold hover:bg-greenCustom"
+                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
                         >
                           Agricultural Surfactants and Adjuvants
                         </Link>
                         <Link
                           href="/bio-pesticides"
-                          className="block px-4 py-2 text-sm font-bold hover:bg-greenCustom"
+                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
                         >
                           Bio-pesticides & Bio-formulants
                         </Link>
                         <Link
                           href="/ai-drones"
-                          className="block px-4 py-2 text-sm font-bold hover:bg-greenCustom"
+                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
                         >
                           AI Drones
                         </Link>
                         <Link
                           href="/agricultural-machinery"
-                          className="block px-4 py-2 text-sm font-bold hover:bg-greenCustom"
+                          className="block px-1 py-1 text-sm font-bold hover:bg-greenCustom"
                         >
                           Agricultural Machinery
                         </Link>
@@ -266,13 +266,13 @@ export function Navigation() {
 
                   <Link
                     href="/paints"
-                    className="block px-4 py-2 text-sm font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 text-sm font-bold hover:bg-greenCustomHover"
                   >
                     Paints
                   </Link>
                   <Link
                     href="/trading-chemicals"
-                    className="block px-4 py-2 text-sm font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1 text-sm font-bold hover:bg-greenCustomHover"
                   >
                     Trading Chemical
                   </Link>
@@ -309,28 +309,28 @@ export function Navigation() {
               </div>
 
               {isResourcesDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-greenCustom text-white text-sm shadow-lg z-50">
+                <div className="absolute top-full left-0 mt-1 w-32 bg-greenCustom text-white text-sm shadow-lg z-50">
                   <Link
                     href="/news"
-                    className="block px-4 py-2 font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
                   >
                     News
                   </Link>
                   <Link
                     href="/general-white-papers"
-                    className="block px-4 py-2 font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
                   >
                     General White Papers
                   </Link>
                   <Link
                     href="/technical-briefs"
-                    className="block px-4 py-2 font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
                   >
                     Technical Briefs
                   </Link>
                   <Link
                     href="/research-papers"
-                    className="block px-4 py-2 font-bold hover:bg-greenCustomHover"
+                    className="block px-1 py-1  font-bold hover:bg-greenCustomHover"
                   >
                     Research Papers
                   </Link>

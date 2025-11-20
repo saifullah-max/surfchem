@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -206,29 +206,24 @@ export function FormulationFilters({
     }));
   };
 
-  const handleFilterChange = (
-    sectionKey: string,
-    item: string,
-    checked: boolean
-  ) => {
+  const handleFilterChange = (sectionKey: string, item: string, checked: boolean) => {
     setSelectedFilters((prev) => {
       const newFilters = { ...prev };
-      if (!newFilters[sectionKey]) {
-        newFilters[sectionKey] = [];
-      }
+      if (!newFilters[sectionKey]) newFilters[sectionKey] = [];
 
       if (checked) {
         newFilters[sectionKey] = [...newFilters[sectionKey], item];
       } else {
-        newFilters[sectionKey] = newFilters[sectionKey].filter(
-          (i) => i !== item
-        );
+        newFilters[sectionKey] = newFilters[sectionKey].filter((i) => i !== item);
       }
 
-      onFilterChange(newFilters);
       return newFilters;
     });
   };
+
+  useEffect(() => {
+    onFilterChange(selectedFilters);
+  }, [selectedFilters]);
 
   const FilterSection = ({
     title,
@@ -242,9 +237,9 @@ export function FormulationFilters({
     <div className="border-b border-gray-200 pb-3 mb-3">
       <button
         onClick={() => toggleSection(sectionKey)}
-        className="flex items-center justify-between w-full text-left text-sm font-medium text-gray-900 hover:text-green-600 py-2"
+        className="flex items-center justify-between w-full text-left bg-[#F0F0F0] border-black border-2 text-sm  font-medium text-gray-900 hover:text-green-600 py-2"
       >
-        <span className="bg-gray-100 px-3 py-1 rounded text-xs font-medium">
+        <span className="bg-gray-100 px-3 py-1 rounded text-xs md:text-[16px] font-medium">
           {title}
         </span>
         {expandedSections[sectionKey] ? (
@@ -267,7 +262,7 @@ export function FormulationFilters({
               />
               <label
                 htmlFor={`${sectionKey}-${index}`}
-                className="text-xs text-gray-600 cursor-pointer leading-tight"
+                className="text-xs md:text-[14px] text-gray-600 cursor-pointer leading-tight"
               >
                 {item}
               </label>

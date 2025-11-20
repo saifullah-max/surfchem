@@ -38,9 +38,9 @@ export function SignInForm() {
 
   return (
     <>{!isAuth &&
-      <div className="bg-white p-8 rounded-3xl shadow-sm border max-w-md w-full">
-        <h2 className="text-5xl sm:text-6xl text-center font-bold text-black2 mb-2">Sign In</h2>
-        <p className="text-black text-2xl mb-8 text-center">Sign in to view this content</p>
+      <div className="bg-white p-8 rounded-3xl shadow-lg border max-w-2xl w-full">
+        <h2 className="text-5xl sm:text-6xl text-center font-bold text-black2 mb-12 mt-12">Sign In</h2>
+        <p className="text-black text-4xl mb-4 text-center">Sign in to view this content</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -49,7 +49,7 @@ export function SignInForm() {
               placeholder="Username*"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-4 py-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
               required
             />
           </div>
@@ -60,7 +60,7 @@ export function SignInForm() {
               placeholder="Password*"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-4 py-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
               required
             />
           </div>
