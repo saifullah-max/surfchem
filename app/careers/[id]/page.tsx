@@ -69,8 +69,12 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
         {/* Tab Content */}
         <div className="pb-8">
           {activeTab === "overview" ?
-            <div dangerouslySetInnerHTML={{ __html: job?.jobSummary || '' }} /> :
-            <ApplicationForm />}
+            <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: job?.jobSummary || '' }}
+            /> :
+            <ApplicationForm id={id} />
+          }
         </div>
       </div>
 

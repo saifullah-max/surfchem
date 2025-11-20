@@ -1,10 +1,11 @@
 "use client";
 
+import { createDocumentInSubCol, uploadFile } from "@/lib/common";
+import { redirect } from "next/navigation";
 import type React from "react";
-
 import { useState } from "react";
 
-export default function ApplicationForm() {
+export default function ApplicationForm({ id }: { id: string }) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -32,9 +33,38 @@ export default function ApplicationForm() {
     setFormData((prev) => ({ ...prev, cv: file }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+
+    if (formData.securityCode.toUpperCase() !== "SURFCHEM") {
+      alert("Please enter the correct security code: SURFCHEM");
+      return;
+    }
+    if (formData.cv == null) {
+      alert("Please upload a resume or CV");
+      return;
+    }
+
+    try {
+      await createDocumentInSubCol('Careers', id, 'JobApplications', {
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        highest_education: formData.educationLevel,
+        college: formData.collegeAttended,
+        major_field: formData.major,
+        experience: formData.workExperience,
+        eligilble_in_us: formData.eligibleToWork,
+        reason_to_apply: formData.whyApplying,
+        resume_pdf: await uploadFile(formData.cv!),
+      })
+    } catch (e) {
+      alert(e)
+      return
+    }
+    redirect('/')
   };
 
   return (
