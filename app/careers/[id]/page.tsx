@@ -21,8 +21,7 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
   const [activeTab, setActiveTab] = useState<"overview" | "application">("overview");
 
   useEffect(() => {
-    const load = async () => setJob(await getCareer(id) as JobPosition)
-    load();
+    getCareer(id).then((e) => setJob(e as JobPosition))
     return () => { };
   }, []);
 
@@ -69,8 +68,12 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
         {/* Tab Content */}
         <div className="pb-8">
           {activeTab === "overview" ?
-            <div dangerouslySetInnerHTML={{ __html: job?.jobSummary || '' }} /> :
-            <ApplicationForm />}
+            <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: job?.jobSummary || '' }}
+            /> :
+            <ApplicationForm id={id} />
+          }
         </div>
       </div>
 

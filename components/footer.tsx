@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { ContactModal } from "./contact-modal";
 
 export function Footer() {
@@ -13,35 +11,35 @@ export function Footer() {
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "company-history" },
-        { name: "Board Of Directors", href: "board-of-directors" },
-        { name: "Innovation Center", href: "innovation-center" },
-        { name: "Sustainability", href: "sustainability" },
-        { name: "Careers", href: "careers" },
-        { name: "Contact Us", href: "contact-us" },
+        { name: "About Us", href: "/company-history" },
+        { name: "Board Of Directors", href: "/board-of-directors" },
+        { name: "Innovation Center", href: "/innovation-center" },
+        { name: "Sustainability", href: "/sustainability" },
+        { name: "Careers", href: "/careers" },
+        { name: "Contact Us", href: "/contact-us/EdqZlRZsDem7RUy0PxJG" },
       ],
     },
     {
       title: "Products",
       links: [
-        { name: "Agriculture / Farming", href: "products" },
-        { name: "Paints", href: "paints" },
-        { name: "Trading Chemicals", href: "trading-chemicals" },
+        { name: "Agriculture / Farming", href: "/products" },
+        { name: "Paints", href: "/paints" },
+        { name: "Trading Chemicals", href: "/trading-chemicals" },
       ],
     },
     {
       title: "Informative",
       links: [
-        { name: "Formulation Guides", href: "formulation-guides" },
-        { name: "News", href: "news" },
-        { name: "White Papers", href: "general-white-papers" },
+        { name: "Formulation Guides", href: "/formulation-guides" },
+        { name: "News", href: "/news" },
+        { name: "White Papers", href: "/general-white-papers" },
       ],
     },
     {
       title: "Legal",
       links: [
-        { name: "Terms Of Use", href: "terms-of-use" },
-        { name: "Privacy Policy", href: "privacy-policy" },
+        { name: "Terms Of Use", href: "/terms-of-use" },
+        { name: "Privacy Policy", href: "/privacy-policy" },
       ],
     },
   ];

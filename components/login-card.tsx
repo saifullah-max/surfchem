@@ -62,6 +62,7 @@ export function LoginCard() {
                 name='email'
                 placeholder="Email*"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 
@@ -75,6 +76,7 @@ export function LoginCard() {
                 placeholder="Password*"
                 name='password'
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 

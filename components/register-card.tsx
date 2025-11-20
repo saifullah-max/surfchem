@@ -93,6 +93,7 @@ export function RegisterCard() {
                 name='last_name'
                 placeholder="Last Name*"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 
@@ -105,6 +106,7 @@ export function RegisterCard() {
                 name='country'
                 placeholder="United States"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 
@@ -118,6 +120,7 @@ export function RegisterCard() {
                 type="email"
                 placeholder="Email*"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 
@@ -130,6 +133,7 @@ export function RegisterCard() {
                 name='company'
                 placeholder="Company Name*"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 
@@ -142,6 +146,7 @@ export function RegisterCard() {
                 name='company_web'
                 placeholder="Webpage*"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 
@@ -154,6 +159,7 @@ export function RegisterCard() {
                 name='phone_number'
                 placeholder="Mobile number*"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 
@@ -166,6 +172,7 @@ export function RegisterCard() {
                 name='check'
                 placeholder="For security, type SURFCHEM in the following field:"
                 className="h-11 rounded-xl border border-black2"
+                required
               />
             </div>
 

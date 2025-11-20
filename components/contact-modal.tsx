@@ -76,30 +76,35 @@ export function ContactModal({
                 name='first_name'
                 placeholder="First Name"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
+                required
               />
               <input
                 type="text"
                 name='last_name'
                 placeholder="Last Name"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
+                required
               />
               <input
                 type="email"
                 name='email'
                 placeholder="Email"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
+                required
               />
               <textarea
                 rows={4}
                 name='description'
                 placeholder="How can Surfactant Chemicals Company help you today?"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
+                required
               />
               <input
                 type="text"
                 name='check'
                 placeholder="For security, type SURFCHEM"
                 className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none"
+                required
               />
               <div className="flex justify-center ">
                 <Button
