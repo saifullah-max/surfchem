@@ -144,7 +144,7 @@ export function Navigation() {
                   {regionalContacts.map((country) => (
                     <Link
                       key={country.id}
-                      href={`/regional-contacts/${country.id}`}
+                      href={`/contact-us/${country.id}`}
                       className="block px-4 py-2 font-semibold text-white hover:bg-greenCustomHover"
                     >
                       {country.title}

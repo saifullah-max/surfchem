@@ -2,12 +2,13 @@
 
 import type React from "react";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createDocumentInSubCol } from "@/lib/common";
+import { useState } from "react";
 
-export function RegionalContactForm() {
+export function RegionalContactForm({ id }: { id: string }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -41,7 +42,14 @@ export function RegionalContactForm() {
     setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await createDocumentInSubCol('RegionalContact', id, 'ContactList', {
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      regional_name: formData.name,
+      description: formData.project,
+    })
 
     setIsSubmitted(true);
     setIsSubmitting(false);
@@ -199,9 +207,7 @@ export function RegionalContactForm() {
           </div>
         </form>
       </div>
-      
+
     </div>
   );
 }
-
-

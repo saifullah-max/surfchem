@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { ContactModal } from "./contact-modal";
 import { Navigation } from "./navigation";
 import { RegionalContactForm } from "./regional-contact-form";
 
@@ -18,8 +17,6 @@ interface RegionalContactPageProps {
 }
 
 export function RegionalContactPage({ data }: RegionalContactPageProps) {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -46,7 +43,10 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
                   <div
                     className="text-[22px] text-black mb-6 max-w-[350px]"
                   >
-                    <p>{data.address}</p>
+                    <div
+                      className="prose max-w-none"
+                      dangerouslySetInnerHTML={{ __html: data?.address || '' }}
+                    />
                   </div>
                 </div>
 
@@ -75,7 +75,7 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
 
             {/* Right Side - Contact Form */}
             <div>
-              <RegionalContactForm />
+              <RegionalContactForm id={data.id} />
             </div>
           </div>
         </div>
@@ -92,12 +92,7 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
               </p>
             </div>
             <div className="mt-6 md:mt-0">
-              <Button
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
-                onClick={() => setIsContactModalOpen(true)}
-              >
-                Let's Talk
-              </Button>
+              <ContactModal />
             </div>
           </div>
         </div>
@@ -230,11 +225,6 @@ export function RegionalContactPage({ data }: RegionalContactPageProps) {
         </div>
       </footer>
 
-      {/* Contact Modal */}
-      {/* <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-      /> */}
     </div>
   );
 }
