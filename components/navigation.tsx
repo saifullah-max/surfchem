@@ -589,25 +589,15 @@ export function Navigation() {
                       />
                     </button>
 
-                    {isRegionalContactsDropdownOpen && (
-                      <div className="pl-4 mt-3 space-y-2">
-                        {[
-                          "Brazil",
-                          "China",
-                          "HongKong",
-                          "India",
-                          "Pakistan",
-                          "Singapore",
-                          "UAE",
-                          "Vietnam",
-                        ].map((country) => (
+                    {isRegionalDropdownOpen && (
+                      <div className="absolute right-0 top-full mt-1 w-48 bg-greenCustom shadow-lg z-50">
+                        {regionalContacts.map((country) => (
                           <Link
-                            key={country}
-                            href={`/regional-contacts/${country.toLowerCase()}`}
-                            className="block py-2 text-black2 font-bold hover:text-white hover:bg-greenCustom"
-                            onClick={closeMobileMenu}
+                            key={country.id}
+                            href={`/contact-us/${country.id}`}
+                            className="block px-4 py-2 font-semibold text-white hover:bg-greenCustomHover"
                           >
-                            {country}
+                            {country.title}
                           </Link>
                         ))}
                       </div>
