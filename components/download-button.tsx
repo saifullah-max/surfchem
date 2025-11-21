@@ -1,29 +1,47 @@
 "use client";
 
 import { auth } from "@/lib/firebase";
-import { Button, Link } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function DownloadButton({ href, text, capitalized = false }: { href: string, text?: string, capitalized?: boolean }) {
-    const [isAuth, setAuth] = useState<boolean>(false);
+export default function DownloadButton({
+    href,
+    text,
+    capitalized = false,
+}: {
+    href: string;
+    text?: string;
+    capitalized?: boolean;
+}) {
+    const [isAuth, setAuth] = useState(false);
+
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(u => setAuth(u != null))
+        const unsubscribe = auth.onAuthStateChanged((u) => setAuth(!!u));
         return () => unsubscribe();
     }, []);
 
-    return (
-        <>
-            {isAuth && <Button
-                type="submit"
-                className={`px-10 mb-20 bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red rounded-none font-bold text-3xl ${capitalized ? 'upp' : ''}`}
-            >
-                <div className="p-6 bg-white rounded-2xl shadow-2xl max-w-xl mx-auto md:max-w-none md:h-[400px] pt-16">
+    // if (!isAuth) return null;
 
-                    <Link href={href} target="_blank" rel="noopener noreferrer">
-                        Download {text}
-                    </Link>
-                </div>
-            </Button>}
-        </>
-    )
+    return (
+        <div className="p-6 bg-white rounded-2xl shadow-2xl max-w-xl mx-auto h-[400px] flex items-start justify-center relative">
+            <div className="relative flex items-center mt-12">
+                {/* Left red bar — closer & slightly taller */}
+                <span className="absolute -left-3 w-[5px] bg-red rounded-full h-[120%]" />
+                <Link
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-3xl font-bold text-black hover:text-red whitespace-nowrap ${capitalized ? "uppercase" : ""
+                        }`}
+                >
+                    Download {text}
+                </Link>
+                {/* Right red bar — closer & slightly taller */}
+                <span className="absolute -right-3 w-[5px] bg-red rounded-full h-[120%]" />
+
+            </div>
+        </div>
+
+    );
 }
