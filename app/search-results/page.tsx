@@ -5,9 +5,9 @@ import { Navigation } from "@/components/navigation";
 import { searchAll, SearchResult } from "@/lib/search";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export default function SearchResultsPage() {
+function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -112,6 +112,29 @@ export default function SearchResultsPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function SearchResultsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <section className="py-8 sm:py-12 bg-white max-w-[1600px] mx-auto">
+          <div className="container mx-auto px-4 sm:px-16">
+            <h1 className="text-5xl sm:text-6xl md:text-[66px] font-bold mb-6 text-black2 mt-8">
+              Search Results
+            </h1>
+            <div className="text-center py-12">
+              <p className="text-xl text-gray-600">Loading...</p>
+            </div>
+          </div>
+        </section>
+        <Footer />
+      </div>
+    }>
+      <SearchResultsContent />
+    </Suspense>
   );
 }
 
