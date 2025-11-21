@@ -21,7 +21,7 @@ export default function DownloadButton({
         return () => unsubscribe();
     }, []);
 
-    // if (!isAuth) return null;
+    if (!isAuth) return null;
 
     return (
         <div className="p-6 bg-white rounded-2xl shadow-2xl max-w-xl mx-auto h-[400px] flex items-start justify-center relative">
