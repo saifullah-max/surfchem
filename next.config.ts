@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["blob.v0.dev", "firebasestorage.googleapis.com"],
+    domains: ["blob.v0.dev", "firebasestorage.googleapis.com", "www.surfchem.co.uk"],
   },
   typescript: {
     ignoreBuildErrors: true,
