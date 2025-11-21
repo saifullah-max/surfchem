@@ -30,8 +30,20 @@ export function DirectorCard({ director }: DirectorCardProps) {
           />
         </div>
 
-        <p className="text-gray-600 text-sm md:text-[16px] mb-6 overflow-hidden text-ellipsis line-clamp-3">
-          {director.fullBio}
+        <p 
+          className="text-gray-600 text-sm md:text-[16px] mb-6"
+          style={{
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical' as const,
+            overflow: 'hidden',
+            lineHeight: '1.5',
+            maxHeight: '4.5em',
+          }}
+        >
+          {Array.isArray(director.fullBio) && director.fullBio.length > 0
+            ? director.fullBio.join(' ').replace(/<[^>]*>/g, '').trim()
+            : ''}
         </p>
 
 

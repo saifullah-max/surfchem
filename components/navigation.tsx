@@ -195,7 +195,7 @@ export function Navigation() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-0 md:gap-1 2xl:gap-8 space-x-6 text-[15px] whitespace-nowrap">
+            <nav className="hidden md:flex items-center gap-0 md:gap-1 2xl:gap-8 space-x-6 text-[16px] whitespace-nowrap">
               <Link
                 href="/"
                 className="text-black2 font-bold hover:text-greenCustom transition-colors whitespace-nowrap"

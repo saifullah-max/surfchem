@@ -15,6 +15,11 @@ export interface SearchResult {
   title: string;
   description?: string;
   url: string;
+  // Additional fields for rendering cards
+  image?: string;
+  excerpt?: string;
+  slug?: string;
+  data?: any; // Full object data for rendering
 }
 
 export async function searchAll(query: string): Promise<SearchResult[]> {
@@ -49,7 +54,8 @@ export async function searchAll(query: string): Promise<SearchResult[]> {
           type: 'Formulation Guide',
           title: formulation.title,
           description: formulation.description,
-          url: `/formulation-guides/${formulation.id}`
+          url: `/formulation-guides/${formulation.id}`,
+          data: formulation
         });
       }
     });
@@ -64,7 +70,11 @@ export async function searchAll(query: string): Promise<SearchResult[]> {
           type: 'News',
           title: item.title,
           description: item.excerpt,
-          url: `/news/${item.slug}`
+          url: `/news/${item.id}`,
+          image: item.image,
+          excerpt: item.excerpt,
+          slug: item.slug,
+          data: item
         });
       }
     });
@@ -79,7 +89,8 @@ export async function searchAll(query: string): Promise<SearchResult[]> {
           type: 'Technical Brief',
           title: brief.title,
           description: brief.description,
-          url: `/technical-briefs`
+          url: `/technical-briefs`,
+          data: brief
         });
       }
     });
@@ -94,7 +105,8 @@ export async function searchAll(query: string): Promise<SearchResult[]> {
           type: 'Research Paper',
           title: paper.title,
           description: paper.description,
-          url: `/research-papers`
+          url: `/research-papers`,
+          data: paper
         });
       }
     });
@@ -109,7 +121,9 @@ export async function searchAll(query: string): Promise<SearchResult[]> {
           type: 'White Paper',
           title: paper.title,
           description: paper.description,
-          url: `/general-white-papers/${paper.id}`
+          url: `/general-white-papers/${paper.id}`,
+          image: paper.image,
+          data: paper
         });
       }
     });
@@ -124,7 +138,8 @@ export async function searchAll(query: string): Promise<SearchResult[]> {
           type: 'Career',
           title: career.title,
           description: `${career.location} - ${career.jobSummary?.substring(0, 150)}...`,
-          url: `/careers/${career.id}`
+          url: `/careers/${career.id}`,
+          data: career
         });
       }
     });

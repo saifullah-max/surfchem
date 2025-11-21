@@ -17,9 +17,12 @@ export default function DownloadButton({ href, text, capitalized = false }: { hr
                 type="submit"
                 className={`px-10 mb-20 bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red rounded-none font-bold text-3xl ${capitalized ? 'upp' : ''}`}
             >
-                <Link href={href} target="_blank" rel="noopener noreferrer">
-                    Download {text}
-                </Link>
+                <div className="p-6 bg-white rounded-2xl shadow-2xl max-w-xl mx-auto md:max-w-none md:h-[400px] pt-16">
+
+                    <Link href={href} target="_blank" rel="noopener noreferrer">
+                        Download {text}
+                    </Link>
+                </div>
             </Button>}
         </>
     )

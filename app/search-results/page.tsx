@@ -2,6 +2,11 @@
 
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
+import { NewsCard } from "@/components/news-card";
+import { FormulationGuideCard } from "@/components/formulation-card";
+import { TechnicalBriefCard } from "@/components/technical-brief-card";
+import { WhitePaperCard } from "@/components/white-paper-card";
+import JobCard from "@/components/job-card";
 import { searchAll, SearchResult } from "@/lib/search";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -68,33 +73,78 @@ function SearchResultsContent() {
                   </p>
                 </div>
               ) : (
-                <div className="space-y-8">
+                <div className="space-y-12">
                   {Object.entries(groupedResults).map(([type, items]) => (
-                    <div key={type} className="border-b border-gray-200 pb-6 last:border-b-0">
-                      <h2 className="text-2xl md:text-3xl font-bold text-black2 mb-4">
-                        {type}
+                    <div key={type} className="border-b border-gray-200 pb-8 last:border-b-0">
+                      <h2 className="text-2xl md:text-3xl font-bold text-black2 mb-6">
+                        {type} ({items.length})
                       </h2>
-                      <div className="space-y-4">
-                        {items.map((result) => (
-                          <Link
-                            key={result.id}
-                            href={result.url}
-                            className="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                          >
-                            <h3 className="text-xl font-semibold text-greenCustom mb-2">
-                              {result.title}
-                            </h3>
-                            {result.description && (
-                              <p className="text-gray-600 line-clamp-2">
-                                {result.description}
-                              </p>
-                            )}
-                            <p className="text-sm text-gray-500 mt-2">
-                              {result.url}
-                            </p>
-                          </Link>
-                        ))}
-                      </div>
+                      {type === 'News' && (
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
+                          {items.map((result) => result.data && (
+                            <NewsCard key={result.id} article={result.data} />
+                          ))}
+                        </div>
+                      )}
+                      {type === 'Formulation Guide' && (
+                        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+                          {items.map((result) => result.data && (
+                            <FormulationGuideCard key={result.id} formulation={result.data} />
+                          ))}
+                        </div>
+                      )}
+                      {type === 'Technical Brief' && (
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
+                          {items.map((result) => result.data && (
+                            <div key={result.id} className="px-4">
+                              <TechnicalBriefCard brief={result.data} />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {type === 'Research Paper' && (
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-2">
+                          {items.map((result) => result.data && (
+                            <div key={result.id} className="px-4">
+                              <TechnicalBriefCard brief={result.data} />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {type === 'White Paper' && (
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
+                          {items.map((result) => result.data && (
+                            <WhitePaperCard key={result.id} whitePaper={result.data} />
+                          ))}
+                        </div>
+                      )}
+                      {type === 'Career' && (
+                        <div className="space-y-6">
+                          {items.map((result) => result.data && (
+                            <JobCard key={result.id} job={result.data} />
+                          ))}
+                        </div>
+                      )}
+                      {(type === 'Product' || type === 'Regional Contact') && (
+                        <div className="space-y-4">
+                          {items.map((result) => (
+                            <Link
+                              key={result.id}
+                              href={result.url}
+                              className="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                            >
+                              <h3 className="text-xl font-semibold text-greenCustom mb-2">
+                                {result.title}
+                              </h3>
+                              {result.description && (
+                                <p className="text-gray-600 line-clamp-2">
+                                  {result.description}
+                                </p>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
