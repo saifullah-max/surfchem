@@ -9,10 +9,12 @@ export default function DownloadButton({
     href,
     text,
     capitalized = false,
+    isTechnicalPage = false
 }: {
     href: string;
     text?: string;
     capitalized?: boolean;
+    isTechnicalPage?: boolean
 }) {
     const [isAuth, setAuth] = useState(false);
 
@@ -24,7 +26,7 @@ export default function DownloadButton({
     if (!isAuth) return null;
 
     return (
-        <div className="p-6 bg-white rounded-2xl shadow-2xl max-w-xl mx-auto h-[400px] flex items-start justify-center relative">
+        <div className={`p-6 bg-white rounded-2xl shadow-2xl max-w-xl mx-auto ${isTechnicalPage ? 'h-[200px]' : 'h-[400px]'} flex items-start justify-center relative`}>
             <div className="relative flex items-center mt-12">
                 {/* Left red bar — closer & slightly taller */}
                 <span className="absolute -left-3 w-[5px] bg-red rounded-full h-[120%]" />

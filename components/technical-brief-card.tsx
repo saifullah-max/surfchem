@@ -33,7 +33,7 @@ export function TechnicalBriefCard({ brief }: TechnicalBriefCardProps) {
             onClick={() => alert("Please sign in to download this technical brief")}
             className="bg-transparent hover:bg-transparent border-y-0 border-x-4 text-black border-red hover:text-red h-12 rounded-none font-bold text-2xl"
           >Sign In To Download</Button>}
-          <DownloadButton href={brief.downloadUrl} />
+          <DownloadButton href={brief.downloadUrl} isTechnicalPage={true} />
         </div>}
       </CardContent>
     </Card>
