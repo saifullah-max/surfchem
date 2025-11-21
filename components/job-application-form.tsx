@@ -2,10 +2,12 @@
 
 import { createDocumentInSubCol, uploadFile } from "@/lib/common";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 
 export default function ApplicationForm({ id }: { id: string }) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -60,11 +62,12 @@ export default function ApplicationForm({ id }: { id: string }) {
         reason_to_apply: formData.whyApplying,
         resume_pdf: await uploadFile(formData.cv!),
       })
+      router.push("/thank-you");
+      // redirect('/thank-you')
     } catch (e) {
       alert(e)
       return
     }
-    redirect('/')
   };
 
   return (
