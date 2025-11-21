@@ -1,4 +1,4 @@
-import { auth, db, storage } from '@/lib/firebase';
+import { db, storage } from '@/lib/firebase';
 import {
     addDoc,
     collection,
@@ -67,9 +67,8 @@ export async function createDocumentInSubCol(col: string, colId: string, subCol:
 }
 
 export async function uploadFile(file: File) {
-    const uid = auth.currentUser!.uid;
     const fileName = `${Date.now()}_${file.name}`;
-    const fileRef = storageRef(storage, `users/${uid}/uploads/${fileName}`);
+    const fileRef = storageRef(storage, `career/uploads/${fileName}`);
     const fileBytes = await file.arrayBuffer()
     const metadata = { contentType: file.type };
     const uploadTask = await uploadBytesResumable(fileRef, fileBytes, metadata);
